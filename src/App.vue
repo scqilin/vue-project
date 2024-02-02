@@ -1,6 +1,16 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import { Button as TinyButton } from '@opentiny/vue'
+import { Slider as TinySlider } from '@opentiny/vue'
+import { TimePicker as TinyTimePicker } from '@opentiny/vue'
+import { ref } from 'vue';
+
+const value = ref(20);
+const value1 = ref(new Date(2016, 9, 10, 18, 40))
+function setValue() {
+  value.value = 50
+}
 </script>
 
 <template>
@@ -9,11 +19,17 @@ import HelloWorld from './components/HelloWorld.vue'
 
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
-
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
+      <div>
+        <h3>引入TinyVue</h3>
+        <TinyButton type="success">按钮</TinyButton>
+        <tiny-button @click="setValue">设置值</tiny-button>
+        <tiny-slider v-model="value"></tiny-slider>
+        <tiny-time-picker v-model="value1"></tiny-time-picker>
+      </div>
     </div>
   </header>
 
